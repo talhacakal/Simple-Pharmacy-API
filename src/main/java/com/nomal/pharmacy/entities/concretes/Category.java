@@ -20,6 +20,5 @@ public class Category {
     private int categoryId;
 
     @Column(name = "category_name")
-    @NotBlank(message = "Name is mandatory")
     private String categoryName;
 }

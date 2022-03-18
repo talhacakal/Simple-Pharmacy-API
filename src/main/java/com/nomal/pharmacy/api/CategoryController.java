@@ -27,8 +27,8 @@ public class CategoryController {
     }
 
     @PostMapping("/save")   // add new or update
-    public ResponseEntity<Category> save(@Valid @RequestBody Category category){
-        return this.categoryService.save(category);
+    public ResponseEntity<Category> save(@RequestParam String categoryName){
+        return this.categoryService.save(categoryName);
     }
 
 

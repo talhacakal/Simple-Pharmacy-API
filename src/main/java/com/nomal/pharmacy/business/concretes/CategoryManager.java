@@ -1,6 +1,8 @@
 package com.nomal.pharmacy.business.concretes;
 
 import com.nomal.pharmacy.business.abstracts.CategoryService;
+import com.nomal.pharmacy.core.exception.AlreadyExistsException;
+import com.nomal.pharmacy.core.exception.RecordNotFoundException;
 import com.nomal.pharmacy.dataAccess.CategoryDao;
 import com.nomal.pharmacy.entities.concretes.Category;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +24,26 @@ public class CategoryManager  implements CategoryService {
 
     @Override
     public List<Category> getAll() {
-        return this.categoryDao.findAll();
+        List<Category> categories = this.categoryDao.findAll();
+
+        if (categories.size() == 0){
+            throw new RecordNotFoundException("Record not found.");
+        }
+
+        return categories;
 
     }
 
     @Override
-    public ResponseEntity<Category> save(Category category) {
-        Category newCategory = this.categoryDao.save(category);
-        return new ResponseEntity<Category>(newCategory, HttpStatus.CREATED);
+    public ResponseEntity<Category> save(String categoryName) {
+
+        Category category = this.categoryDao.getCategoryByCategoryName(categoryName);
+
+        if (category != null){
+            throw new AlreadyExistsException(categoryName + " already exist");
+        }
+
+        category = this.categoryDao.save(new Category(0, categoryName));
+        return new ResponseEntity<Category>(category, HttpStatus.CREATED);
     }
 }

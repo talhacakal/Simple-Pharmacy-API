@@ -37,7 +37,7 @@ public interface StockService {
             @Size(min = 12, max = 13, message = "This is not valid size.")
             @Pattern(regexp = "[0-9]+", message = "Barcode number can only consist of numbers.") String barcodeNum,
             @Min(value = 1, message = "StoreId must be greater than 0.") int storeId,
-            @Min(value = 0, message = "Quantity must be greater than zero.") int stockQuantity); //stock quantity update
+            @Min(value = 1, message = "Quantity must be greater than zero.") int stockQuantity); //stock quantity update
 
     /* -------------------------- */
 
