@@ -12,4 +12,4 @@ Queries stock quantity from barcode number. Makes stock add or stock update.
 
 
 ## Database EER diagram:
-![](https://github.com/talhacakal1/Simple-Pharmacy-API/blob/main/EER%20diyagram.png)
+![](https://github.com/talhacakal/Simple-Pharmacy-API/blob/main/MyDb.png)
